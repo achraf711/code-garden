@@ -1,0 +1,169 @@
+<div class="home-page">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Perfect Summer Scent</h1>
+            <p>Explore our collection of premium summer fragrances</p>
+            <a href="/products" class="btn btn-primary">Shop Now</a>
+        </div>
+    </section>
+
+    <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="products-grid">
+            <% products.forEach(product => { %>
+                <div class="product-card">
+                    <% if (product.isNew) { %>
+                        <span class="badge badge-new">New</span>
+                    <% } %>
+                    <% if (product.onSale) { %>
+                        <span class="badge badge-sale">Sale</span>
+                    <% } %>
+                    
+                    <img 
+                        class="product-image lazy-image" 
+                        src="/images/placeholder.jpg"
+                        data-src="<%= product.image %>" 
+                        alt="<%= product.name %>"
+                    >
+                    
+                    <div class="product-info">
+                        <h3 class="product-title"><%= product.name %></h3>
+                        <div class="star-rating">
+                            <% for(let i = 0; i < 5; i++) { %>
+                                <i class="fas fa-star<%= i < Math.floor(product.rating || 0) ? '' : '-o' %>"></i>
+                            <% } %>
+                            <span class="rating-count">(<%= product.reviewCount || 0 %>)</span>
+                        </div>
+                        <p class="product-description"><%= product.description %></p>
+                        <div class="product-price">$<%= product.price.toFixed(2) %></div>
+                        <div class="product-actions">
+                            <a href="/products/<%= product.id %>" class="btn btn-primary">View Details</a>
+                            <button class="wishlist-btn" data-product-id="<%= product.id %>" aria-label="Add to wishlist">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </section>
+
+    <section class="categories">
+        <h2>Shop by Category</h2>
+        <div class="category-grid">
+            <a href="/products?category=Fresh" class="category-card">
+                <i class="fas fa-wind"></i>
+                <h3>Fresh</h3>
+                <p>Light and invigorating scents</p>
+            </a>
+            <a href="/products?category=Floral" class="category-card">
+                <i class="fas fa-flower"></i>
+                <h3>Floral</h3>
+                <p>Romantic floral fragrances</p>
+            </a>
+            <a href="/products?category=Citrus" class="category-card">
+                <i class="fas fa-lemon"></i>
+                <h3>Citrus</h3>
+                <p>Energizing citrus blends</p>
+            </a>
+            <a href="/products?category=Oriental" class="category-card">
+                <i class="fas fa-moon"></i>
+                <h3>Oriental</h3>
+                <p>Exotic evening scents</p>
+            </a>
+        </div>
+    </section>
+</div>
+
+<style>
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/1920/600?random=10');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) 0;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.featured-products,
+.categories {
+    padding: var(--spacing-xl) 0;
+}
+
+.featured-products h2,
+.categories h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-xl);
+    font-size: 2rem;
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md) 0;
+}
+
+.category-card {
+    background-color: var(--surface-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.category-card i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.category-card h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-color);
+}
+
+.category-card p {
+    color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+</style> 

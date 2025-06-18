@@ -1,0 +1,178 @@
+<%- include('layout', { title: title }) %>
+
+<div class="products-page">
+    <div class="container">
+        <div class="filters-section">
+            <h2>Filters</h2>
+            <form action="/products" method="GET" class="filters-form">
+                <div class="filter-group">
+                    <label for="search">Search:</label>
+                    <input type="text" id="search" name="search" value="<%= filters.search || '' %>" placeholder="Search products...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="brand">Brand:</label>
+                    <select id="brand" name="brand">
+                        <option value="">All Brands</option>
+                        <% brands.forEach(brand => { %>
+                            <option value="<%= brand %>" <%= filters.brand === brand ? 'selected' : '' %>><%= brand %></option>
+                        <% }); %>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="minPrice">Price Range:</label>
+                    <div class="price-inputs">
+                        <input type="number" id="minPrice" name="minPrice" value="<%= filters.minPrice || '' %>" placeholder="Min" min="0">
+                        <span>to</span>
+                        <input type="number" id="maxPrice" name="maxPrice" value="<%= filters.maxPrice || '' %>" placeholder="Max" min="0">
+                    </div>
+                </div>
+
+                <button type="submit" class="filter-button">Apply Filters</button>
+                <a href="/products" class="clear-filters">Clear Filters</a>
+            </form>
+        </div>
+
+        <div class="products-section">
+            <h1>Our Products</h1>
+            <% if (products.length === 0) { %>
+                <p class="no-products">No products found matching your criteria.</p>
+            <% } else { %>
+                <div class="products-grid">
+                    <% products.forEach(product => { %>
+                        <div class="product-card">
+                            <% if (product.isNew) { %>
+                                <span class="badge badge-new">New</span>
+                            <% } %>
+                            <% if (product.onSale) { %>
+                                <span class="badge badge-sale">Sale</span>
+                            <% } %>
+                            
+                            <img 
+                                class="product-image lazy-image" 
+                                src="/images/placeholder.jpg"
+                                data-src="<%= product.image %>" 
+                                alt="<%= product.name %>"
+                            >
+                            
+                            <div class="product-info">
+                                <h3 class="product-title"><%= product.name %></h3>
+                                <div class="star-rating">
+                                    <% for(let i = 0; i < 5; i++) { %>
+                                        <i class="fas fa-star<%= i < Math.floor(product.rating || 0) ? '' : '-o' %>"></i>
+                                    <% } %>
+                                    <span class="rating-count">(<%= product.reviewCount || 0 %>)</span>
+                                </div>
+                                <p class="product-description"><%= product.description %></p>
+                                <div class="product-price">$<%= product.price.toFixed(2) %></div>
+                                <div class="product-actions">
+                                    <a href="/products/<%= product.id %>" class="btn btn-primary">View Details</a>
+                                    <button class="wishlist-btn" data-product-id="<%= product.id %>" aria-label="Add to wishlist">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<style>
+.products-page {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
+}
+
+.filters-section {
+    background-color: var(--surface-color);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    height: fit-content;
+}
+
+.search-bar {
+    margin-bottom: var(--spacing-lg);
+}
+
+.search-bar input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.filter-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.filter-group h3 {
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+.filter-group select,
+.price-inputs input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.price-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--spacing-md);
+}
+
+.wishlist-btn {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: var(--spacing-xs);
+    transition: color 0.3s;
+}
+
+.wishlist-btn:hover,
+.wishlist-btn.active {
+    color: var(--secondary-color);
+}
+
+.rating-count {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-left: var(--spacing-xs);
+}
+
+@media (max-width: 768px) {
+    .products-page {
+        grid-template-columns: 1fr;
+    }
+
+    .filters-section {
+        position: sticky;
+        top: calc(var(--spacing-lg) + 60px);
+        z-index: 1;
+    }
+}
+</style> 

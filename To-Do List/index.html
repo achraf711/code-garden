@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-app">
+            <header class="app-header">
+                <div class="header-top">
+                    <div class="header-left">
+                        <h1>Todo List</h1>
+                        <div class="progress-ring-container">
+                            <div class="progress-ring">
+                                <svg width="60" height="60">
+                                    <circle class="progress-ring-circle-bg" cx="30" cy="30" r="25"></circle>
+                                    <circle class="progress-ring-circle" cx="30" cy="30" r="25"></circle>
+                                    <text x="30" y="30" class="progress-ring-text" text-anchor="middle" dominant-baseline="middle">0%</text>
+                                </svg>
+                            </div>
+                            <span class="progress-ring-label">completed today</span>
+                        </div>
+                    </div>
+                    <div class="view-options">
+                        <button id="pomodoro-toggle" class="icon-btn" title="Pomodoro Timer">
+                            <i class="fas fa-clock"></i>
+                        </button>
+                        <button id="view-toggle" class="icon-btn" title="Toggle view">
+                            <i class="fas fa-th-list"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-btn" title="Toggle theme">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="motivational-quote">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <span id="quote-text"></span>
+                </div>
+                
+                <div id="focus-task" class="focus-task" style="display: none;">
+                    <div class="focus-header">
+                        <i class="fas fa-thumbtack"></i>
+                        <span>Today's Focus</span>
+                    </div>
+                    <div class="focus-content"></div>
+                </div>
+
+                <div class="header-stats">
+                    <div class="stats-item">
+                        <span id="tasks-count">0</span> tasks remaining
+                    </div>
+                    <div class="stats-item">
+                        <span id="completed-count">0</span> completed
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </header>
+
+            <form id="todo-form">
+                <div class="input-group main-input">
+                    <input 
+                        type="text" 
+                        id="todo-input" 
+                        placeholder="Add a new task..."
+                        required
+                    >
+                    <button type="submit" class="add-btn">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <div class="form-options">
+                    <div class="option-group">
+                        <select id="category-select" class="form-select">
+                            <option value="">Select Category</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="health">Health</option>
+                            <option value="other">Other</option>
+                        </select>
+                        
+                        <select id="priority-select" class="form-select">
+                            <option value="normal">Normal Priority</option>
+                            <option value="low">Low Priority</option>
+                            <option value="high">High Priority</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+
+                        <select id="repeat-select" class="form-select">
+                            <option value="none">No Repeat</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <input type="datetime-local" id="due-date" class="form-input" title="🕒 Pick a due date and time for this task">
+                        <input type="number" id="estimate-time" class="form-input" placeholder="Estimated Time (e.g. 30 mins)" title="⏱️ Estimated time to complete the task (in minutes)" min="0" max="480">
+                        <input type="text" id="tags-input" class="form-input" placeholder="Add tags (comma-separated)">
+                    </div>
+                    
+                    <div class="option-group">
+                        <textarea id="notes-input" class="form-input" placeholder="Add notes..."></textarea>
+                    </div>
+                </div>
+            </form>
+
+            <div class="toolbar">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="today">Today</button>
+                    <button class="filter-btn" data-filter="upcoming">Upcoming</button>
+                    <button class="filter-btn" data-filter="active">Active</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                </div>
+                
+                <div class="sort-options">
+                    <select id="sort-select" class="form-select">
+                        <option value="date-added">Date Added</option>
+                        <option value="due-date">Due Date</option>
+                        <option value="priority">Priority</option>
+                        <option value="alphabetical">Alphabetical</option>
+                        <option value="estimated-time">Estimated Time</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="search-bar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search tasks..." class="form-input">
+                </div>
+                <button id="advanced-search" class="icon-btn" title="Advanced search">
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+            </div>
+
+            <div class="categories-overview">
+                <div class="category-progress" data-category="work">
+                    <div class="category-label">Work</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="todo-list-container">
+                <ul id="todo-list"></ul>
+                <p id="empty-state" class="empty-state">No tasks yet</p>
+            </div>
+
+            <footer class="list-footer">
+                <div class="action-buttons">
+                    <button id="clear-completed" class="clear-btn">
+                        <i class="fas fa-broom"></i> Clear Completed
+                    </button>
+                    <button id="clear-all" class="clear-btn danger">
+                        <i class="fas fa-trash-alt"></i> Clear All
+                    </button>
+                </div>
+                
+                <div class="extra-options">
+                    <button id="export-data" class="icon-btn" title="Export data">
+                        <i class="fas fa-file-export"></i>
+                    </button>
+                    <button id="import-data" class="icon-btn" title="Import data">
+                        <i class="fas fa-file-import"></i>
+                    </button>
+                    <button id="show-stats" class="icon-btn" title="Show statistics">
+                        <i class="fas fa-chart-bar"></i>
+                    </button>
+                    <button id="show-settings" class="icon-btn" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="pomodoro-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Pomodoro Timer</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="pomodoro-container">
+                <div class="timer-display">
+                    <span id="timer-minutes">25</span>:<span id="timer-seconds">00</span>
+                </div>
+                <div class="timer-controls">
+                    <button id="start-timer" class="btn primary">Start</button>
+                    <button id="pause-timer" class="btn">Pause</button>
+                    <button id="reset-timer" class="btn">Reset</button>
+                </div>
+                <div class="timer-settings">
+                    <div class="setting-group">
+                        <label>Work Duration (minutes)</label>
+                        <input type="number" id="work-duration" value="25" min="1" max="60">
+                    </div>
+                    <div class="setting-group">
+                        <label>Break Duration (minutes)</label>
+                        <input type="number" id="break-duration" value="5" min="1" max="30">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="settings-form">
+                <div class="setting-group">
+                    <label>Default View</label>
+                    <select id="default-view-setting" class="form-select">
+                        <option value="list">List View</option>
+                        <option value="grid">Grid View</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label>Time Format</label>
+                    <select id="time-format-setting" class="form-select">
+                        <option value="12">12-hour</option>
+                        <option value="24">24-hour</option>
+                    </select>
+                </div>
+                <div class="setting-group">
+                    <label>Notifications</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="notifications-setting">
+                        <span class="toggle-slider"></span>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <label>Sound Effects</label>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="sound-setting">
+                        <span class="toggle-slider"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="stats-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Task Statistics</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="stats-content"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

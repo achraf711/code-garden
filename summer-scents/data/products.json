@@ -1,0 +1,69 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Ocean Breeze",
+      "brand": "Summer Essence",
+      "price": 89.99,
+      "description": "A fresh and invigorating scent that captures the essence of a summer day by the beach. Notes of sea salt, citrus, and tropical flowers.",
+      "image": "https://picsum.photos/400/300?random=1",
+      "category": "Fresh",
+      "rating": 4.5,
+      "reviewCount": 128,
+      "isNew": true,
+      "onSale": false
+    },
+    {
+      "id": "2",
+      "name": "Sunset Paradise",
+      "brand": "Coastal Dreams",
+      "price": 75.99,
+      "description": "A warm and romantic fragrance with notes of coconut, vanilla, and exotic flowers. Perfect for summer evenings.",
+      "image": "https://picsum.photos/400/300?random=2",
+      "category": "Floral",
+      "rating": 4.2,
+      "reviewCount": 95,
+      "isNew": false,
+      "onSale": true
+    },
+    {
+      "id": "3",
+      "name": "Citrus Garden",
+      "brand": "Summer Essence",
+      "price": 65.99,
+      "description": "An energizing blend of Mediterranean citrus, featuring bergamot, lemon, and mandarin orange.",
+      "image": "https://picsum.photos/400/300?random=3",
+      "category": "Citrus",
+      "rating": 4.8,
+      "reviewCount": 156,
+      "isNew": false,
+      "onSale": false
+    },
+    {
+      "id": "4",
+      "name": "Tropical Nights",
+      "brand": "Island Bliss",
+      "price": 95.99,
+      "description": "An exotic evening fragrance with notes of jasmine, ylang-ylang, and sweet mango.",
+      "image": "https://picsum.photos/400/300?random=4",
+      "category": "Oriental",
+      "rating": 4.6,
+      "reviewCount": 82,
+      "isNew": true,
+      "onSale": false
+    },
+    {
+      "id": "5",
+      "name": "Mediterranean Breeze",
+      "brand": "Coastal Dreams",
+      "price": 79.99,
+      "description": "A light and airy scent inspired by the Mediterranean coast, featuring lavender, sea spray, and white musk.",
+      "image": "https://picsum.photos/400/300?random=5",
+      "category": "Fresh",
+      "rating": 4.3,
+      "reviewCount": 74,
+      "isNew": false,
+      "onSale": true
+    }
+  ]
+} 

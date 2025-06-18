@@ -1,0 +1,42 @@
+<%- include('layout', { title: title }) %>
+
+<div class="product-detail-page">
+    <div class="container">
+        <div class="product-detail">
+            <div class="product-image">
+                <img src="<%= product.image %>" alt="<%= product.name %>">
+            </div>
+            
+            <div class="product-info">
+                <nav class="breadcrumb">
+                    <a href="/">Home</a> &gt;
+                    <a href="/products">Products</a> &gt;
+                    <span><%= product.name %></span>
+                </nav>
+
+                <h1><%= product.name %></h1>
+                <p class="brand"><%= product.brand %></p>
+                <p class="category">Category: <%= product.category %></p>
+                <p class="price">$<%= product.price.toFixed(2) %></p>
+                
+                <div class="description">
+                    <h2>Description</h2>
+                    <p><%= product.description %></p>
+                </div>
+
+                <form action="/cart/add" method="POST" class="add-to-cart-form">
+                    <input type="hidden" name="productId" value="<%= product.id %>">
+                    <div class="quantity-selector">
+                        <label for="quantity">Quantity:</label>
+                        <select name="quantity" id="quantity">
+                            <% for(let i = 1; i <= 10; i++) { %>
+                                <option value="<%= i %>"><%= i %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <button type="submit" class="add-to-cart-button">Add to Cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
