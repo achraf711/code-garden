@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TimeTrackr</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="styles.css">
+    <script src="lib/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>TimeTrackr</h1>
+        
+        <div class="date-selector">
+            <button id="prevDate">←</button>
+            <span id="currentDate"></span>
+            <button id="nextDate">→</button>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="timeChart"></canvas>
+        </div>
+
+        <div class="stats-container">
+            <h2>Today's Statistics</h2>
+            <div id="statsList"></div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html> 
