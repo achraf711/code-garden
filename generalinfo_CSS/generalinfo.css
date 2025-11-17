@@ -1,0 +1,249 @@
+/* =====================================================
+   PRIORITY (SPECIFICITY)
+   Inline > #id > .class > tag > *
+===================================================== */
+
+/* tag selector */
+p {
+    color: black;
+}
+
+/* class selector */
+.note {
+    color: blue;
+}
+
+/* id selector */
+#title {
+    color: red;
+}
+
+
+/* =====================================================
+   SELECTORS
+===================================================== */
+
+/* descendant selector */
+div p {
+    color: green;
+}
+
+/* direct child selector */
+div > span {
+    color: purple;
+}
+
+
+/* =====================================================
+   BOX MODEL
+   content → padding → border → margin
+===================================================== */
+
+.box {
+    width: 200px;
+    padding: 10px;
+    border: 2px solid black;
+    margin: 20px;
+}
+
+
+/* =====================================================
+   INLINE vs BLOCK
+===================================================== */
+
+.inline-example {
+    display: inline;
+}
+
+.block-example {
+    display: block;
+}
+
+
+/* =====================================================
+   TEXT PROPERTIES
+===================================================== */
+
+/* alignment */
+.text-center {
+    text-align: center;
+}
+
+/* direction */
+.rtl {
+    direction: rtl;
+}
+
+/* transform */
+.uppercase {
+    text-transform: uppercase;
+}
+
+/* spacing */
+.spacing {
+    letter-spacing: 2px;
+    word-spacing: 10px;
+    line-height: 1.5;
+}
+
+/* decoration */
+.underline {
+    text-decoration: underline; /* can also be overline or line-through */
+}
+
+/* shadows */
+.text-shadow {
+    text-shadow: 2px 2px 4px gray;
+}
+
+.box-shadow {
+    box-shadow: 0 0 10px gray;
+}
+
+
+/* =====================================================
+   FONTS
+===================================================== */
+
+/* general font styles */
+.font-example {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* custom font */
+@font-face {
+    font-family: myFont;
+    src: url("myFont.ttf");
+}
+
+.custom-font {
+    font-family: myFont;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.bg-color {
+    background-color: lightblue;
+}
+
+.bg-image {
+    background-image: url("image.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* =====================================================
+   COLORS & OPACITY
+===================================================== */
+
+.color-example {
+    color: rgb(255, 100, 0);
+    opacity: 0.7;
+}
+
+
+/* =====================================================
+   PSEUDO ELEMENTS
+===================================================== */
+
+p::before {
+    content: ">> "; /* adding >> before paragraph */
+    color: red;
+}
+
+p::after {
+    content: " <<";
+    color: blue;
+}
+
+p::first-letter { 
+    font-size: 30px; 
+    color: green;
+}
+
+p::first-line { 
+    font-weight: bold;
+}
+
+/* =====================================================
+   PSEUDO-CLASSES
+===================================================== */
+
+/* Hover */
+.btn:hover {
+    background: blue;
+    color: white;
+}
+
+/* Active (mouse click) */
+.btn:active {
+    background: darkblue;
+}                   
+
+/* Focus (input selected) */
+input:focus {
+    border: 2px solid rgb(240, 95, 17);
+}
+
+/* Empty elements */
+.empty:empty {
+    background: rgb(90, 210, 21);
+    height: 20px;
+}
+
+
+/* =====================================================
+   SIBLING SELECTORS
+===================================================== */
+
+/* Adjacent sibling (next element only) */
+h2 + p { /* only the paragraph immediately after h2 becomes purple */
+    color: purple;
+}
+
+/* General sibling (all next paragraphs) */
+h3 ~ p { /* all paragraphs after h3 become light blue */
+    background: #eef;
+}
+
+
+/* =====================================================
+   ATTRIBUTE SELECTORS
+===================================================== */
+
+/* type attribute */
+input[type="text"] {
+    border: 2px solid blue;
+}
+
+/* links starting with http */
+a[href^="http"] {  /* ^ means "starts with" */
+    color: green;
+}
+
+/* links ending with .pdf */
+a[href$=".pdf"] { /* $ means "ends with" */
+    color: red;
+}
+
+/* attribute contains a word */
+div[data-info*="chess"] { /* * means containing a specific value */
+    background: lightyellow;
+    border: 1px solid gold;
+}
+
+/* attribute equals value */
+button[data-role="primary"] {
+    background: dodgerblue;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+}

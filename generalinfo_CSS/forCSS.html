@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Basics Demo</title>
+    <link rel="stylesheet" href="generalinfo.css">
+</head>
+<body>
+
+    <h1 id="title">CSS BASICS DEMO</h1>
+
+    <!-- PRIORITY + SELECTORS -->
+    <div class="note">
+        <p>This paragraph is inside a div (descendant selector).</p>
+        <span>Direct child of div (child selector).</span>
+    </div>
+
+    <!-- BOX MODEL -->
+    <h2>Box Model</h2>
+    <div class="box">
+        This is a box with margin, padding, and border.
+    </div>
+
+    <!-- INLINE vs BLOCK -->
+    <h2>Inline vs Block</h2>
+    <span class="inline-example">Inline A</span>
+    <span class="inline-example">Inline B</span>
+    <div class="block-example">Block element (takes full width)</div>
+
+    <!-- TEXT ALIGN / DIRECTION -->
+    <h2>Text Formatting</h2>
+    <p class="text-center">This text is centered.</p>
+    <p class="rtl">مرحبا هذا نص من اليمين لليسار (RTL).</p>
+
+    <!-- TRANSFORM / SPACING -->
+    <p class="uppercase">this will be uppercase.</p>
+    <p class="spacing">This text has custom spacing between letters and words.</p>
+
+    <!-- DECORATION / SHADOWS -->
+    <p class="underline">This text is underlined.</p>
+    <p class="text-shadow">This text has a shadow.</p>
+    <div class="box-shadow box">This box has a shadow.</div>
+
+    <!-- FONTS -->
+    <h2>Fonts</h2>
+    <p class="font-example">This paragraph uses font-size, style, weight, etc.</p>
+    <p class="custom-font">This uses a custom @font-face font.</p>
+
+    <!-- BACKGROUND -->
+    <h2>Background</h2>
+    <div class="bg-color box">Box with background color</div>
+    <div class="bg-image box">Box with background image</div>
+
+    <!-- COLOR + OPACITY -->
+    <h2>Color & Opacity</h2>
+    <p class="color-example">Colored text with opacity.</p>
+
+    <!-- PSEUDO ELEMENTS -->
+    <h2>Pseudo Elements</h2>
+    <p>This paragraph shows ::before, ::after, ::first-letter, and ::first-line effects.</p>
+
+    <h1>CSS Selectors & Pseudo Classes Demo</h1>
+
+    <!-- ======================================================
+         PSEUDO-CLASSES
+    ====================================================== -->
+
+    <h2>Pseudo-Classes</h2>
+
+    <button class="btn">Hover or Click Me</button>
+
+    <br><br>
+
+    <input type="text" placeholder="Click to focus">
+
+    <ul class="list">
+        <li>First child (red)</li>
+        <li>Second child (highlight)</li>
+        <li>Last child (blue)</li>
+    </ul>
+
+    <div class="empty"></div>
+
+    <!-- ======================================================
+         SIBLING SELECTORS
+    ====================================================== -->
+
+    <h2>Sibling Selectors</h2>
+
+    <h2>Next paragraph only (adjacent sibling +)</h2>
+    <p>This paragraph becomes purple.</p>
+    <p>This paragraph does NOT become purple.</p>
+
+    <h3>All paragraphs after this (general sibling ~)</h3>
+    <p>Styled because it comes after h3</p>
+    <p>Also styled</p>
+
+
+    <!-- ======================================================
+         ATTRIBUTE SELECTORS
+    ====================================================== -->
+
+    <h2>Attribute Selectors</h2>
+
+    <input type="text" placeholder="Text input (blue border)">
+
+    <br><br>
+
+    <a href="http://google.com">HTTP link (green)</a><br>
+    <a href="file.pdf">PDF file link (red)</a><br>
+
+    <div data-info="infinite chess strategy">
+        This div uses data-info*="chess"
+    </div>
+
+    <br>
+
+    <button data-role="primary">Primary Button</button>
+
+</body>
+</html>
+    
+</body>
+</html>
