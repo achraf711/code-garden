@@ -13,7 +13,7 @@ let undef;
     // Null :
 let nullVar = null;
 
-                // -------  VARIABLES IN JS  --------: 
+                // -------  VARIABLES IN JS  -------- : 
     // var : (global scope, function scope)
 var x = 10;
 x = 15;
@@ -22,10 +22,10 @@ let y = 20;
 y = 25;
     // const : (block scope, cannot be re-assigned)
 const z = 30;
-    // z = 35; // This will throw an error
+    // z = 35 ; --> This will throw an error.
 
 
-                // -------  concatenataion IN JS  --------: 
+                // -------  concatenataion IN JS  -------- : 
 let firstName = "Fang";
 let lastName = "Yuan";
 console.log(firstName + " " + lastName); // Output: John Doe
@@ -69,17 +69,6 @@ console.log(canVote); // Output: Yes
 console.log(typeof a); // Output: number
 console.log(firstName instanceof String); // Output: false
 console.log(firstName instanceof Object); // Output: false
-
-    // Bitwise Operators : (&, |, ^, ~, <<, >>, >>>)
-let m = 5; // 0101 in binary
-let n = 3; // 0011 in binary
-console.log(m & n); // Output: 1 (0001 in binary)
-console.log(m | n); // Output: 7 (0111 in binary)
-console.log(m ^ n); // Output: 6 (0110 in binary)
-console.log(~m);    // Output: -6 (inverts bits)
-console.log(m << 1); // Output: 10 (1010 in binary)
-console.log(m >> 1); // Output: 2 (0010 in binary)
-console.log(m >>> 1); // Output: 2 (0010 in binary)
 
     // String Operators : (+, +=)
 let str1 = "Hello, ";
@@ -129,7 +118,7 @@ console.log(message.concat(" Welcome!")); // Output: Hello, JavaScript! Welcome!
  
                 // -------  ARRAY IN JS  -------- :
 
-let exarray = ["ahmed" , "ali" , " mazen" , "omar", 123 , true , undefined , null , [4,5,6] ]
+let exarray = ["ahmed" , "ali" , "mazen" , "omar", 123 , true , undefined , null , [4,5,6] ]
 console.log(exarray); // output: ["ahmed" , "ali" , " mazen" , "omar", 123 , true , undefined , null , [4,5,6] ]
 console.log(exarray[0]); // output: ahmed
 console.log(exarray.length); // output: 9
@@ -190,13 +179,13 @@ for (initialisation; condition; itération) {
     // Code à exécuter à chaque itération
 }
 
-    // for...of (tables and iterable objects ):
+    // for...of (tables and iterable objects):
 let tableau = [1, 2, 3, 4, 5];
 for (let element of tableau) {
-console.log(element); // Affiche les éléments 1, 2, 3, 4, 5
+console.log(element); // show  elements 1, 2, 3, 4, 5 one by one
 
-    // for...in (pour les objets) :
-let objet = {
+    // for...in (for objets) :
+let object = {
 nom: "Alice",
 age: 25,
 ville: "Paris"
@@ -210,3 +199,9 @@ console.log(propriete + ": " + objet[propriete]);
 // ville: Paris
 }
                     // -------  fonctions IN JS  -------- :
+
+function hello(name) // declare a fct
+{
+    console.log("hello" + name);
+}
+hello(achraf); // calling a fct
