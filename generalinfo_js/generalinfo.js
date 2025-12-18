@@ -132,12 +132,12 @@ console.log(objects[3]); // output : [7,8,9]
 console.log(objects[3][2]); // output : 9
 
     // add and remove elements
-exarray.push("ziyad");// add ziyad to the last index
-exarray.unshift("hicham");// add hicham to the first index
-exarray.shift();// remove first element and keep it
-exarray.pop();// remove last element and keep it
-exarray.splice(0,2);// remove two elements(2) starting from 0(0) ([0]and[1])
-exarray.splice(0,2,"yassin","aadil");// same but add "yassin" and "aadil" from[0]
+exarray.push("ziyad"); // add ziyad to the last index
+exarray.pop(); // remove last element and keep it
+exarray.unshift("hicham"); // add hicham to the first index
+exarray.shift(); // remove first element and keep it
+exarray.splice(0,2); // remove two elements(2) starting from 0(0) --> remove : [0]and[1]
+exarray.splice(0,2,"yassin","aadil"); // same but add "yassin" and "aadil" from[0]
 
                 // -------  conditional statement IN JS  -------- :
     // methode 1 :
@@ -177,7 +177,10 @@ do {
     // for :
 for (initialisation; condition; itération) {
     // Code à exécuter à chaque itération
+    // var x ; --> golbale variable cause it's hoisted, but use last value of x 
+    // let x ; --> local variable cause it's not hoisted
 }
+
 
     // for...of (tables and iterable objects):
 let tableau = [1, 2, 3, 4, 5];
@@ -190,18 +193,267 @@ nom: "Alice",
 age: 25,
 ville: "Paris"
 };
-for (let propriete in objet) {
-console.log(propriete + ": " + objet[propriete]);
+for (let propriete in object) {
+console.log(propriete + ": " + object[propriete]);
 }
 // Affiche :
 // nom: Alice
 // age: 25
 // ville: Paris
 }
-                    // -------  fonctions IN JS  -------- :
+                    // -------  FUNCTIONS IN JS  -------- :
 
-function hello(name) // declare a fct
-{
-    console.log("hello" + name);
+// 1. "Function Declaration" : (hoisted, can be called before declaration)
+function greet(name) {
+    console.log("Hello " + name);
 }
-hello(achraf); // calling a fct
+greet("Achraf"); // Output: Hello Achraf
+
+// 2. "Function Expression" : (not hoisted, assigned to a variable)
+const greet2 = function(name) {
+    console.log("Hi " + name);
+};
+greet2("Ali"); // Output: Hi Ali
+
+// 3. "Arrow Function" : (shorter syntax, does not have its own 'this')
+const greet3 = (name) => {
+    console.log("Hey " + name);
+};
+greet3("Yassin"); // Output: Hey Yassin
+
+// 4. Function with Return Value :
+function add(a, b) {
+    return a + b;
+}
+let result = add(5, 3);
+console.log(result); // Output: 8
+
+// 5. Default Parameters :
+function multiply(a, b = 2) {
+    return a * b;
+}
+console.log(multiply(4)); // Output: 8  (b defaults to 2)
+
+// 6. Functions with Multiple Parameters :
+function totalPrice(price, tax, discount) {
+    return price + tax - discount;
+}
+console.log(totalPrice(100, 5, 10)); // Output: 95
+
+// 7. Immediately Invoked Function Expression (IIFE) :
+// Function that runs itself :
+(function() {
+    console.log("IIFE executed!");
+})(); // Output: IIFE executed!
+
+// 8. Scope in Functions : 
+function testScope() {
+    var x = "var x"; // function scoped
+    let y = "let y"; // block scoped
+    const z = "const z"; // block scoped
+    console.log(x, y, z);
+}
+testScope(); // Output: var x let y const z
+
+// 9. Nested Functions :
+function outer() {
+    function inner() {
+        console.log("Inner function called!");
+    }
+    inner();
+}
+outer(); // Output: Inner function called! -- the function inner cannot be called outside outer (locale)
+
+// 10. Example: Calculating Product Price
+function product(price, taxes) {
+    let finalPrice = price + taxes;
+    return finalPrice;
+}
+let price = product(22, 0.3);
+console.log(price + " DH"); // Output: 22.3 DH
+
+                // -------  OBJECTS IN JS  -------- :
+
+// 1. Creating an Object :
+let person = {
+    name: "Alice",
+    age: 25,
+    city: "Paris"
+};
+console.log(person); 
+// Output: { name: 'Alice', age: 25, city: 'Paris' }
+
+// 2. Accessing Object Properties :
+console.log(person.name);  // Output: Alice
+console.log(person["age"]); // Output: 25 , ["age"] --> same as .age
+
+// 3. Adding / Modifying Properties :
+person.job = "Engineer"; // add new property
+person.age = 26;          // modify existing property
+console.log(person);
+// Output: { name: 'Alice', age: 26, city: 'Paris', job: 'Engineer' }
+
+// 4. Deleting a Property :
+delete person.city;
+console.log(person);
+// Output: { name: 'Alice', age: 26, job: 'Engineer' }
+
+// 5. Nested Objects :
+let student = {
+    name: "John",
+    marks: {
+        math: 90,
+        english: 85
+    }
+};
+console.log(student.marks.math); // Output: 90
+
+// object.create() :
+let user1 = {
+    name: "achraf",
+    getName: function() {
+        return `hello ${this.name}`; // We use this to refer to the object calling the function
+    }
+};
+let user2 = Object.create(user1); // copy content of user1 in user2
+user2.name = "John"; // change the name in user2 but still achraf in user1
+console.log(user2.getName());
+
+// 6. Iterating Over an Object :
+// for...in loop
+for (let key in person) {
+    console.log(key + ": " + person[key]);
+}
+// Output:
+// name: Alice
+// age: 26
+// job: Engineer
+
+// 7. Object Methods :
+let car = {
+    brand: "Toyota",
+    model: "Corolla",
+    start: function() {
+        console.log(this.brand + " " + this.model + " started!");
+    }
+};
+car.start(); // Output: Toyota Corolla started!
+
+// 8. Object.keys(), Object.values(), Object.entries() :
+console.log(Object.keys(person));   // Output: [ 'name', 'age', 'job' ]
+console.log(Object.values(person)); // Output: [ 'Alice', 26, 'Engineer' ]
+console.log(Object.entries(person)); 
+// Output: [ ['name','Alice'], ['age',26], ['job','Engineer'] ]
+
+// 9. Object Destructuring :
+let {name, age} = person; // distruct the values of keys(name,age) and put it to a new variable(name,age)
+console.log(name); // Output: Alice
+console.log(age);  // Output: 26
+
+let{name:newName , age:newAge} = person; // distruct with different names 
+console.log(newName); // Output: Alice
+console.log(newAge);  // Output: 26
+
+// 10. Dynamic Property Names :
+let propName = "score";
+let game = {
+    [propName]: 100
+};
+console.log(game.score); // Output: 100
+
+// 11. Spread Operator for Objects :
+let newObj = { ...obj1, ...obj2, c: 3 };
+console.log(newObj); // Output: { a: 1, b: 2, c: 3 }
+
+// 12. Example: Object in a Function :
+function showPerson(p) {
+    console.log(`${p.name} is ${p.Age} years old.`);
+}
+showPerson(person); // Output: Alice is 26 years old.
+
+                 // -------  ADVANCED CONCEPTS JS -------- :
+                 
+// 1. PROTOTYPES & INHERITANCE :
+/* Prototype = another object that an object inherits from
+   JS looks for a property:
+   1) in the object itself
+   2) if not found → in its prototype */
+
+let parent = {
+    type: "parent",
+    sayHello: function () {
+        console.log("Hello from parent");
+    }
+};
+let child = Object.create(parent); // child inherits from parent
+console.log(child.name);       // Child Object (from child)
+console.log(child.type);       // parent (inherited)
+child.sayHello();              // Hello from parent
+
+// prototype check
+console.log(child.__proto__ === parent); // true
+
+// 2. Object.assign() :
+let obj1 = { a: 1 };
+let obj2 = { b: 2 };
+let merged = Object.assign({}, obj1, obj2);
+console.log(merged); // Output: { a: 1, b: 2 }
+
+// 3.  GETTERS & SETTERS :
+/* Getter = read a value
+   Setter = write a value
+   Used like normal properties (no parentheses) */
+
+let user = {
+    firstName: "Achraf",
+    lastName: "Rezki",
+
+    // getter
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    },
+    // setter
+    set fullName(value) {
+        let parts = value.split(" ");
+        this.firstName = parts[0];
+        this.lastName = parts[1];
+    }
+};
+
+// getter usage (read)
+console.log(user.fullName); // Achraf Rezki
+
+// setter usage (write)
+user.fullName = "John Doe";
+console.log(user.firstName); // John
+console.log(user.lastName);  // Doe
+
+//4. Object.freeze() & Object.seal() :
+/* Object.freeze()
+   no modify , no add , no delete */
+
+let frozenObj = {
+    language: "JavaScript"
+};
+Object.freeze(frozenObj);
+frozenObj.language = "Python"; // ignored
+frozenObj.level = "Beginner";  // ignored
+delete frozenObj.language;     // ignored
+console.log(frozenObj); // { language: "JavaScript" }
+
+
+// Object.seal()
+// modify existing values , add new properties , delete properties
+
+let sealedObj = {
+    framework: "React",
+    version: 18
+};
+Object.seal(sealedObj);
+sealedObj.version = 19;     // allowed
+sealedObj.author = "Meta"; // ignored
+delete sealedObj.framework;// ignored
+console.log(sealedObj); // { framework: "React", version: 19 }
+
+                // -------  THE DOCUMENT OBJECT MODEL :  -------- :
+
