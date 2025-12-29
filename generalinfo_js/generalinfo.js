@@ -65,10 +65,8 @@ let age = 18;
 let canVote = (age >= 18) ? "Yes" : "No";
 console.log(canVote); // Output: Yes
 
-    // Type Operators : (typeof, instanceof)
+    // Type Operators : (typeof)
 console.log(typeof a); // Output: number
-console.log(firstName instanceof String); // Output: false
-console.log(firstName instanceof Object); // Output: false
 
     // String Operators : (+, +=)
 let str1 = "Hello, ";
@@ -132,10 +130,10 @@ console.log(objects[3]); // output : [7,8,9]
 console.log(objects[3][2]); // output : 9
 
     // add and remove elements
-exarray.push("ziyad"); // add ziyad to the last index
-exarray.pop(); // remove last element and keep it
 exarray.unshift("hicham"); // add hicham to the first index
 exarray.shift(); // remove first element and keep it
+exarray.push("ziyad"); // add ziyad to the last index
+exarray.pop(); // remove last element and keep it
 exarray.splice(0,2); // remove two elements(2) starting from 0(0) --> remove : [0]and[1]
 exarray.splice(0,2,"yassin","aadil"); // same but add "yassin" and "aadil" from[0]
 
@@ -342,8 +340,7 @@ car.start(); // Output: Toyota Corolla started!
 // 8. Object.keys(), Object.values(), Object.entries() :
 console.log(Object.keys(person));   // Output: [ 'name', 'age', 'job' ]
 console.log(Object.values(person)); // Output: [ 'Alice', 26, 'Engineer' ]
-console.log(Object.entries(person)); 
-// Output: [ ['name','Alice'], ['age',26], ['job','Engineer'] ]
+console.log(Object.entries(person)); // Output: [ ['name','Alice'], ['age',26], ['job','Engineer'] ]
 
 // 9. Object Destructuring :
 let {name, age} = person; // distruct the values of keys(name,age) and put it to a new variable(name,age)
@@ -354,18 +351,7 @@ let{name:newName , age:newAge} = person; // distruct with different names
 console.log(newName); // Output: Alice
 console.log(newAge);  // Output: 26
 
-// 10. Dynamic Property Names :
-let propName = "score";
-let game = {
-    [propName]: 100
-};
-console.log(game.score); // Output: 100
-
-// 11. Spread Operator for Objects :
-let newObj = { ...obj1, ...obj2, c: 3 };
-console.log(newObj); // Output: { a: 1, b: 2, c: 3 }
-
-// 12. Example: Object in a Function :
+// 10. Example: Object in a Function :
 function showPerson(p) {
     console.log(`${p.name} is ${p.Age} years old.`);
 }
@@ -386,6 +372,7 @@ let parent = {
     }
 };
 let child = Object.create(parent); // child inherits from parent
+child.name = "Child Object";
 console.log(child.name);       // Child Object (from child)
 console.log(child.type);       // parent (inherited)
 child.sayHello();              // Hello from parent
@@ -437,13 +424,11 @@ let frozenObj = {
 };
 Object.freeze(frozenObj);
 frozenObj.language = "Python"; // ignored
-frozenObj.level = "Beginner";  // ignored
 delete frozenObj.language;     // ignored
 console.log(frozenObj); // { language: "JavaScript" }
 
-
-// Object.seal()
-// modify existing values , add new properties , delete properties
+/* Object.seal()
+   modify existing values , can't add new properties , can't delete properties */
 
 let sealedObj = {
     framework: "React",
@@ -455,5 +440,69 @@ sealedObj.author = "Meta"; // ignored
 delete sealedObj.framework;// ignored
 console.log(sealedObj); // { framework: "React", version: 19 }
 
-                // -------  THE DOCUMENT OBJECT MODEL :  -------- :
+// -------  THE DOCUMENT OBJECT MODEL (DOM)  -------- :
 
+// 1. WHAT IS THE DOM? :
+/* The DOM is a tree structure representation of your HTML document.
+   Every part of the page (tags, text, attributes) is a "Node".  */
+// Types of Nodes :
+// - Element Node (e.g., <div>, <p>) 
+// - Text Node (The text inside elements) 
+// - Attribute Node (e.g., class="box") 
+// - Comment Node
+
+// 2. SELECTING ELEMENTS (Accessing the DOM) :
+
+    // A. By ID (Selects a single element) 
+let header = document.getElementById("header");
+    // B. By Class Name (Selects a collection) 
+let items = document.getElementsByClassName("list-item"); // add [index] if theres a lot of element in same class 
+    // C. By Tag Name (Selects all elements of a type) 
+let paragraphs = document.getElementsByTagName("p"); // Note: This returns a "NodeList" (like an array). 
+    // D. querySelector (Selects the FIRST match using CSS syntax) 
+let menu = document.querySelector(".menu"); 
+    // E. querySelectorAll (Selects ALL matches using CSS syntax) 
+let allLinks = document.querySelectorAll("a");
+
+// 3. ELEMENT PROPERTIES & MODIFICATION :
+
+let element = document.getElementById("content");
+    // A. innerHTML (Reads/Writes HTML content) 
+element.innerHTML = "<p>New HTML content</p>"; 
+    // B. textContent (Reads/Writes plain text - Safer) 
+element.textContent = "Just plain text"; 
+    // C. ID & ClassName Properties 
+element.id = "newId";
+element.className = "my-class"; // Replaces all current classes
+
+// 4. CHANGING STYLES (CSS via JS) : 
+
+let box = document.getElementById("box");
+    // Use camelCase for CSS properties (e.g., background-color -> backgroundColor)
+box.style.color = "blue";            // 
+box.style.fontSize = "24px";         // 
+box.style.backgroundColor = "yellow";// 
+
+// 5. ATTRIBUTES & CLASSES METHODS :
+
+let img = document.getElementById("myImage");
+    // A. Attributes 
+img.setAttribute("src", "image.jpg"); // Set an attribute 
+let src = img.getAttribute("src");    // Get an attribute value
+    // B. ClassList (Better way to handle classes) 
+element.classList.add("highlight");    // Adds a class 
+element.classList.remove("active"); // Removes a class (Common practice)
+
+// 6. DOM MANIPULATION (Adding/Removing Nodes) :
+
+    // A. Create a new element
+let newDiv = document.createElement("div");
+newDiv.textContent = "I am new here!";
+    // B. Append (Add to the end of a parent)
+document.body.appendChild(newDiv); 
+    // C. Insert Before (Add before a specific sibling) 
+parentNode.insertBefore(newNode, referenceNode);
+    // D. Remove (Delete a child)
+parentNode.removeChild(childNode);
+    // E. Replace (Swap two elements) 
+parentNode.replaceChild(newNode, oldNode);
