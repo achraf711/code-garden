@@ -1,0 +1,50 @@
+═══════════════════════════════════════════════════════════════
+    ⚠️  CRITICAL: THIS WEBSITE REQUIRES NODE.JS  ⚠️
+═══════════════════════════════════════════════════════════════
+
+You CANNOT open index.html directly in your browser!
+This is a React application that MUST be run through a server.
+
+═══════════════════════════════════════════════════════════════
+                        WHAT TO DO:
+═══════════════════════════════════════════════════════════════
+
+STEP 1: INSTALL NODE.JS
+   → Go to: https://nodejs.org/
+   → Download the LTS version (GREEN button)
+   → Install it
+   → RESTART YOUR COMPUTER
+
+STEP 2: VERIFY INSTALLATION
+   → Open a NEW terminal/command prompt
+   → Type: node --version
+   → You should see: v20.x.x or similar
+
+STEP 3: INSTALL DEPENDENCIES
+   → Open terminal in THIS folder
+   → Type: npm install
+   → Wait for it to finish
+
+STEP 4: RUN THE WEBSITE
+   → Type: npm run dev
+   → Copy the URL shown (http://localhost:5173/)
+   → Paste it in your browser
+
+═══════════════════════════════════════════════════════════════
+                    CURRENT STATUS:
+═══════════════════════════════════════════════════════════════
+
+❌ Node.js: NOT INSTALLED
+❌ Dependencies: NOT INSTALLED
+❌ Website: CANNOT RUN
+
+═══════════════════════════════════════════════════════════════
+
+Without Node.js, this React app CANNOT work.
+There is NO alternative way to run it.
+
+Please install Node.js first, then follow the steps above.
+
+For detailed instructions, see: QUICK_START.md
+
+═══════════════════════════════════════════════════════════════

@@ -129,6 +129,16 @@ let objects = [1,2,3,[7,8,9]];
 console.log(objects[3]); // output : [7,8,9]
 console.log(objects[3][2]); // output : 9
 
+// -------  ARRAY DESTRUCTURING  -------- :
+let colors = ["Red", "Green", "Blue"];
+// Extract values into variables based on position
+let [first, second] = colors;
+console.log(first);  // Output: Red
+console.log(second); // Output: Green
+// Skipping elements (using commas)
+let [primary, , tertiary] = colors; 
+console.log(tertiary); // Output: Blue
+
     // add and remove elements
 exarray.unshift("hicham"); // add hicham to the first index
 exarray.shift(); // remove first element and keep it
@@ -149,7 +159,7 @@ if (condition) {
 
     // methode 2 :
 switch (expression) {
-    case value1:
+    case value1:   // num no quotes , strings use '' or ""
         // Code to execute for value1
         break;
     case value2:
@@ -340,7 +350,6 @@ car.start(); // Output: Toyota Corolla started!
 // 8. Object.keys(), Object.values(), Object.entries() :
 console.log(Object.keys(person));   // Output: [ 'name', 'age', 'job' ]
 console.log(Object.values(person)); // Output: [ 'Alice', 26, 'Engineer' ]
-console.log(Object.entries(person)); // Output: [ ['name','Alice'], ['age',26], ['job','Engineer'] ]
 
 // 9. Object Destructuring :
 let {name, age} = person; // distruct the values of keys(name,age) and put it to a new variable(name,age)
@@ -383,7 +392,7 @@ console.log(child.__proto__ === parent); // true
 // 2. Object.assign() :
 let obj1 = { a: 1 };
 let obj2 = { b: 2 };
-let merged = Object.assign({}, obj1, obj2);
+let merged = Object.assign({}, obj1, obj2); //Use {} to create a safe NEW copy; if you skip it, you accidentally overwrite your ORIGINAL object
 console.log(merged); // Output: { a: 1, b: 2 }
 
 // 3.  GETTERS & SETTERS :
@@ -440,7 +449,7 @@ sealedObj.author = "Meta"; // ignored
 delete sealedObj.framework;// ignored
 console.log(sealedObj); // { framework: "React", version: 19 }
 
-// -------  THE DOCUMENT OBJECT MODEL (DOM)  -------- :
+                        // -------  THE DOCUMENT OBJECT MODEL (DOM)  -------- :
 
 // 1. WHAT IS THE DOM? :
 /* The DOM is a tree structure representation of your HTML document.
@@ -460,7 +469,7 @@ let items = document.getElementsByClassName("list-item"); // add [index] if ther
     // C. By Tag Name (Selects all elements of a type) 
 let paragraphs = document.getElementsByTagName("p"); // Note: This returns a "NodeList" (like an array). 
     // D. querySelector (Selects the FIRST match using CSS syntax) 
-let menu = document.querySelector(".menu"); 
+let menu = document.querySelector(".menu"); // class . || id # || tageName h1,p...  
     // E. querySelectorAll (Selects ALL matches using CSS syntax) 
 let allLinks = document.querySelectorAll("a");
 
